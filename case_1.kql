@@ -1,3 +1,10 @@
+// Expand list of rf_ids into seperate rows
+// Make the dynamic type rif_ids into a string
+// Join the modified Shelves table with the Book table based on matching rd_ids
+// Summarise the weight_gram for each book based on the shelf they are on
+// Create a new column that stores the calculated difference between the total_weight and sum_weight_gram, the true weight of the shelf
+// Then sort by the weight_difference, the top result is the shelf the missing book is on
+
 Shelves
 | mv-expand rf_ids
 | extend rf_ids = tostring(rf_ids)
