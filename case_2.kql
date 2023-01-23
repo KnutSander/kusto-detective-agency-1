@@ -1,4 +1,5 @@
 // Feel like I'm getting close to something
+// The problem is that there is not a standard time difference that can be used with bin(), or I at least I have not found it yet
 
 Votes
 | summarize by bin(Timestamp, 1800ms), vote, via_ip
