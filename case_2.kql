@@ -1,0 +1,9 @@
+// Feel like I'm getting close to something
+
+Votes
+| summarize by bin(Timestamp, 1800ms), vote, via_ip
+| summarize Count=count() by vote
+| as hint.materialized=true T
+| extend Total = toscalar(T | summarize sum(Count))
+| project vote, Percentage = round(Count*100.0 / Total, 1), Count
+| order by Count
