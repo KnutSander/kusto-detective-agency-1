@@ -8,3 +8,12 @@ Votes
 | extend Total = toscalar(T | summarize sum(Count))
 | project vote, Percentage = round(Count*100.0 / Total, 1), Count
 | order by Count
+
+// Average difference between votes in order of Timestamp and via_ip
+Votes
+| where vote == "Poppy"
+| order by Timestamp asc, via_ip
+| extend nextTimestamp = next(Timestamp)
+| project Duration = nextTimestamp - Timestamp
+| summarize diff = avg(Duration)
+// 00:00:00.0193729
