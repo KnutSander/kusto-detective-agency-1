@@ -17,3 +17,13 @@ Votes
 | project Duration = nextTimestamp - Timestamp
 | summarize diff = avg(Duration)
 // 00:00:00.0193729
+
+// Summarise the votes per minute and then decompose anomalies to make it normalised
+// Now, how to make this changes to the actual dataset
+let max_t = toscalar(Votes | summarize max(Timestamp));
+let min_t = toscalar(Votes | summarize min(Timestamp));
+Votes
+| where vote == "Poppy"
+| summarize votes_per_minute=count() by bin(Timestamp, 10m), via_ip
+| make-series sum(votes_per_minute) on Timestamp in range(min_t, max_t, 10m) by via_ip
+| extend series_decompose_anomalies(sum_votes_per_minute)
