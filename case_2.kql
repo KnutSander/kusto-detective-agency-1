@@ -1,29 +1,30 @@
-// Feel like I'm getting close to something
-// The problem is that there is not a standard time difference that can be used with bin(), or I at least I have not found it yet
+// This one got really long, but it works and that's what counts
+// The goal is to remove the inflated values from the "Poppy" votes
 
+// To do this we isolate the "Poppy" votes
+// Then summarise them using bin() on TImestamp, which basically summarises them based on a 10 minute limit.
+// This creates normal vote counts, but also the massively inflated ones
+// To utilise the series_decompose_anomalies function it needs a list, so we make that using make_list()
+// The series_decompose_anomalies creates several lists with information regarding the vote lists
+// Based on this list we can change the outliers, which is done using array_iff()
+// Then we simply summarise to make it compatibale with the second collection
+let poppy_votes = Votes
+| where vote == "Poppy"
+| summarize votes=count() by bin(Timestamp, 10m), vote, via_ip
+| summarize all_votes = make_list(votes) by vote, via_ip
+| extend series_decompose_anomalies(all_votes)
+| extend all_votes = array_iff(series_decompose_anomalies_all_votes_ad_score, 1, all_votes)
+| extend votes = array_sum(all_votes)
+| summarize Count=sum(votes) by vote
+| extend Count=tolong(Count);
+
+// Here we use the same functions as provided by the case brief, but omit the "Poppy" votes at first
+// Only after summarising do we add the normalised "Poppy" vote count, and then calculate the percentages
 Votes
-| summarize by bin(Timestamp, 1800ms), vote, via_ip
+| where vote  != "Poppy"
 | summarize Count=count() by vote
+| union poppy_votes
 | as hint.materialized=true T
 | extend Total = toscalar(T | summarize sum(Count))
 | project vote, Percentage = round(Count*100.0 / Total, 1), Count
 | order by Count
-
-// Average difference between votes in order of Timestamp and via_ip
-Votes
-| where vote == "Poppy"
-| order by Timestamp asc, via_ip
-| extend nextTimestamp = next(Timestamp)
-| project Duration = nextTimestamp - Timestamp
-| summarize diff = avg(Duration)
-// 00:00:00.0193729
-
-// Summarise the votes per minute and then decompose anomalies to make it normalised
-// Now, how to make this changes to the actual dataset
-let max_t = toscalar(Votes | summarize max(Timestamp));
-let min_t = toscalar(Votes | summarize min(Timestamp));
-Votes
-| where vote == "Poppy"
-| summarize votes_per_minute=count() by bin(Timestamp, 10m), via_ip
-| make-series sum(votes_per_minute) on Timestamp in range(min_t, max_t, 10m) by via_ip
-| extend series_decompose_anomalies(sum_votes_per_minute)
