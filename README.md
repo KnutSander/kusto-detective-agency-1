@@ -1,5 +1,6 @@
 # Kusto_Detective_Agency
 My solutions for the Kusto Detective Agency cases as I try to solve them while learning how to use Azure Data Explorer.
+![Kusto Detective Agency Logo](/img/kusto.png "Kusto Detective Agency Log")
 
 ## On-Boarding: Welcome
 This provided a simple yet effective introduction to KQL, nothing much to say about it.
