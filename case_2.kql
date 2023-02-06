@@ -10,13 +10,13 @@
 // Then we simply summarise to make it compatibale with the second collection
 let poppy_votes = Votes
 | where vote == "Poppy"
-| summarize votes=count() by bin(Timestamp, 10m), vote, via_ip
+| summarize votes = count() by bin(Timestamp, 10m), vote, via_ip
 | summarize all_votes = make_list(votes) by vote, via_ip
 | extend series_decompose_anomalies(all_votes)
 | extend all_votes = array_iff(series_decompose_anomalies_all_votes_ad_score, 1, all_votes)
 | extend votes = array_sum(all_votes)
-| summarize Count=sum(votes) by vote
-| extend Count=tolong(Count);
+| summarize Count = sum(votes) by vote
+| extend Count = tolong(Count);
 
 // Here we use the same functions as provided by the case brief, but omit the "Poppy" votes at first
 // Only after summarising do we add the normalised "Poppy" vote count, and then calculate the percentages
