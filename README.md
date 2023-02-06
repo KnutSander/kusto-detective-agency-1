@@ -1,5 +1,5 @@
 # Kusto_Detective_Agency
-![Kusto Detective Agency Logo](/img/kusto.png "Kusto Detective Agency Log")
+![Kusto Detective Agency Logo](https://images.credly.com/images/43b452c6-89f2-4649-bb84-19f3166a833e/image.png "Kusto Detective Agency Log")
 
 My solutions for the Kusto Detective Agency cases as I try to solve them while learning how to use Azure Data Explorer.
 
