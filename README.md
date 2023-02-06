@@ -28,4 +28,6 @@ With all the testing and failing I did for case 2 I managed to smash this one ou
 // TODO: Rewrite all of these, should explain a bit more the method I used, not these unhelpful sentences
 
 ## Case 4 - Ready to Play?
+<img src="https://detective.kusto.io/img/questions/04-pq5sd.png" width=35% height=35%>
+
 ???
