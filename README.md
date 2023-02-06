@@ -1,5 +1,5 @@
 # Kusto_Detective_Agency
-![Kusto Detective Agency Logo](https://images.credly.com/images/43b452c6-89f2-4649-bb84-19f3166a833e/image.png "Kusto Detective Agency Log")
+![Kusto Detective Agency Logo](https://camo.githubusercontent.com/7fd177aca84d773ba04788c64aec488c631775f0b04a6559421028ddc2dfa9ec/68747470733a2f2f6465746563746976652e6b7573746f2e696f2f696d672f6c6f676f2d696e762e706e67 "Kusto Detective Agency Log")
 
 My solutions for the Kusto Detective Agency cases as I try to solve them while learning how to use Azure Data Explorer.
 
