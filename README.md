@@ -21,3 +21,6 @@ This felt like a massive step up from the previous case, and required me to expl
 
 
 ## Case 3 - Bank Robebry
+With all the testing and failing I did for case 2 I managed to smash this one out pretty quickly.
+
+// TODO: Rewrite all of these, should explain a bit more the method I used, not these unhelpful sentences
