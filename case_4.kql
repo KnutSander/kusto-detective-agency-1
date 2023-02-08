@@ -1,0 +1,9 @@
+// Somehow calculate the smallest special prime here
+let potential_sp = Prime_Numbers
+| serialize 
+| extend next_prime = next(Prime)
+| extend potential_sp = Prime + next_prime + 1
+| project potential_sp;
+Prime_Numbers
+| join kind=innerunique potential_sp on $left.Prime == $right.potential_sp
+| sort by potential_sp
