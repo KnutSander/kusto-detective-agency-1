@@ -7,3 +7,21 @@ let potential_sp = Prime_Numbers
 Prime_Numbers
 | join kind=innerunique potential_sp on $left.Prime == $right.potential_sp
 | sort by potential_sp
+
+
+// Schubert locations
+let schub_points = nyc_trees
+| where spc_common == "'Schubert' chokecherry"
+| summarize count() by geo_point_to_h3cell(longitude, latitude, 10)
+| where count_ == 4;
+// Combining with Turkish hazelnuts
+let point = nyc_trees
+| where spc_common == "Turkish hazelnut"
+| summarize count() by geo_point_to_h3cell(longitude, latitude, 10)
+| join kind=inner schub_points on $left.Column2 == $right.Column1;
+// Finding the American Linden tree within the same area
+nyc_trees
+| where spc_common == "American linden"
+| extend h3cell = geo_point_to_h3cell(longitude, latitude, 10)
+| project-keep h3cell, longitude, latitude
+| where h3cell in (point)
