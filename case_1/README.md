@@ -1,5 +1,5 @@
 # Case 1: The Rarest Book is Missing!
-<p float="left">
+<p float="center">
   <img src="https://detective.kusto.io/img/questions/01-jy6th.png" width=35% height=35%>
   <img src="https://images.credly.com/size/680x680/images/14d53c52-2701-4045-9f89-e5e510eee2fd/image.png" width=35% height=35%>
 <p>
