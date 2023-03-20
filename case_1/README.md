@@ -5,4 +5,5 @@ Finding the book proved an interesting challenge. I quickly realised it had to d
 After that it was a case of simply finding the correct commands to figure out which one had the highest difference.
 
 <img src="https://images.credly.com/size/680x680/images/14d53c52-2701-4045-9f89-e5e510eee2fd/image.png" width=35% height=35%>
+
 [Link to Badge](https://www.credly.com/earner/earned/badge/775a0ce5-7885-47e2-bd66-1773ec7f259c)
