@@ -8,7 +8,6 @@ Prime_Numbers
 | join kind=innerunique potential_sp on $left.Prime == $right.potential_sp
 | sort by potential_sp
 
-
 // Schubert locations
 let schub_points = nyc_trees
 | where spc_common == "'Schubert' chokecherry"
