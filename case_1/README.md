@@ -1,7 +1,8 @@
 # Case 1: The Rarest Book is Missing!
 
-Finding the book proved an interesting challenge. I quickly realised it had to do with comparing the total weight of the books on the shelf, i.e. the weight the shelf should have, and the weight of the shelf according to the data.
-After that it was a case of simply finding the correct commands to figure out which one had the highest difference.
+Based on the information provided in the case description and the data stored in the provided dataset, it was *heavily* (wink wink) implied that it had to with the weights of the books. </br>
+The shelf where the missing book is be located would the have the highest difference between actual weight and the total weight of the registered books on the shelf, so my solution calculated exactly this.
+
 
 <p float="left">
   <img src="https://detective.kusto.io/img/questions/01-jy6th.png" width=35% height=35%>
