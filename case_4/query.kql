@@ -25,3 +25,12 @@ nyc_trees
 | extend h3cell = geo_point_to_h3cell(longitude, latitude, 10)
 | project-keep h3cell, longitude, latitude
 | where h3cell in (point)
+
+// Getting google map location
+VirtualTourLink(40.7128881, -73.96372108)
+// Some looking around was neccesarry to find "El Puente", which took a while
+
+// Deconding the encrypted message with the key
+let _message = @"20INznpGzmkmK2NlZ0JILtO4OoYhOoYUB0OrOoTl5mJ3KgXrB0[8LTSSXUYhzUY8vmkyKUYevUYrDgYNK07yaf7soC3kKgMlOtHkLt[kZEclBtkyOoYwvtJGK2YevUY[v65iLtkeLEOhvtNlBtpizoY[v65yLdOkLEOhvtNlDn5lB07lOtJIDmllzmJ4vf7soCpiLdYIK0[eK27soleqO6keDpYp2CeH5d\F\fN6aQT6aQL[aQcUaQc[aQ57aQ5[aQDG";
+let _key = "Ashes to Ashes";
+print Decrypt(_message, _key)
