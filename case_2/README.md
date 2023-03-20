@@ -1,4 +1,4 @@
-# Case 2: Election Fraud
+# Case 2 - Election Fraud
 
 The difference between the onbarding case and the missing book case versus the missing book case and this case felt massive. In comparison this case took way longer to solve, and required an extensive amount of researching, testing and failing before any progress was made. </br> 
 After exploring the dataset in-depth and understanding how to use the bin() and series_decompose_anomalies() functions, as well as much variable tweaking, the solution was finally found. 
