@@ -1,2 +1,3 @@
+# Summarises the Score column
 Onboarding
 | summarize sum(Score)
