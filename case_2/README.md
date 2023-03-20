@@ -4,7 +4,7 @@ The difference between the onbarding case and the missing book case versus the m
 After exploring the dataset in-depth and understanding how to use the bin() and series_decompose_anomalies() functions, as well as much variable tweaking, the solution was finally found. 
 
 <p float="left">
-  <img src="https://detective.kusto.io/img/questions/02-syh7t.png" width=35% height=35%>
+  <img src="https://detective.kusto.io/img/questions/02-syh7t.png" width=40% height=40%>
   <img src="https://images.credly.com/size/680x680/images/ba8eb12f-2d57-4e9c-b1da-c395bd1d7fd3/image.png" width=30% height=30%>
 </p>
 
