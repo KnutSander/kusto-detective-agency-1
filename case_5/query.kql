@@ -1,3 +1,4 @@
+// PART 1
 // Seperate the message into relevant pieces
 // Remove the message string
 let UserActions = ChatLogs
@@ -28,3 +29,21 @@ PossibleChannels
 | summarize Count = count() by Target
 | where Count == 4
 // This leaves one possible channel: "cf053de3c7b"
+
+// PART 2
+// Seperate the message into relevant pieces
+// Remove the message string
+// Only consider rows on the correct channel
+// Store the distinct users
+let Criminals = ChatLogs
+| parse Message with "User '" User "' " Action " '" Target"'"
+| project-away Message
+| where Target == "cf053de3c7b"
+| distinct User;
+// Seperate the message into relevant pieces
+// Join the Criminals on the users
+// Store the IP addresses of the users
+ChatLogs
+| parse Message with "User '" User "' " Action " '" Target"'"
+| join Criminals on User
+| project Target
