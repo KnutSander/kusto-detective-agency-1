@@ -1,0 +1,30 @@
+// Seperate the message into relevant pieces
+// Remove the message string
+let UserActions = ChatLogs
+| parse Message with "User '" User "' " Action " '" Target"'"
+| project-away Message;
+// Ony consider the actions of joining and leaving
+// Give joining a value of 1 and leaving a valye of -1
+// Sort by Target and Timestamp
+// Calculate the amount of users in a given channel
+// Get the maximum user count by each channel
+// Only consider channels with a maximum of 4 users
+let PossibleChannels = UserActions
+| where Action contains "joined" or Action contains "left"
+| extend ActionValue = iff(Action contains "joined", 1, -1)
+| sort by Target, Timestamp asc 
+| serialize UserCount=row_cumsum(ActionValue, Action != prev(Action))
+| summarize max(UserCount) by Target
+| where max_UserCount == 4;
+// Join the original table with the one containing the possible channels
+// Only keep the channel and the user
+// Only keep distinct channel and user pairings
+// Count users by channel
+// Only keep the ones with 4 users
+PossibleChannels
+| join kind=inner UserActions on Target
+| project Target, User
+| distinct Target, User
+| summarize Count = count() by Target
+| where Count == 4
+// This leaves one possible channel: "cf053de3c7b"
